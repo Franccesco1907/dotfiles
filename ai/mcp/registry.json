@@ -1,0 +1,65 @@
+{
+  "servers": [
+    {
+      "name": "context7",
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "tools": [
+        "opencode",
+        "claude",
+        "codex"
+      ],
+      "requiredEnv": [],
+      "notes": "OpenCode uses remote MCP URL; Claude uses context7-mcp via npx; Codex uses remote MCP URL."
+    },
+    {
+      "name": "engram",
+      "type": "local",
+      "command": "/opt/homebrew/bin/engram",
+      "args": [
+        "mcp",
+        "--tools=agent"
+      ],
+      "tools": [
+        "opencode",
+        "claude",
+        "codex"
+      ],
+      "requiredEnv": [],
+      "notes": "Homebrew path is macOS-specific; WSL/Linux may need a different command path."
+    },
+    {
+      "name": "figma",
+      "type": "remote",
+      "url": "https://mcp.figma.com/mcp",
+      "tools": [
+        "codex"
+      ],
+      "requiredEnv": [],
+      "notes": "Discovered in Codex config only."
+    },
+    {
+      "name": "stitch",
+      "type": "remote",
+      "url": "https://stitch.googleapis.com/mcp",
+      "tools": [
+        "codex"
+      ],
+      "requiredEnv": [
+        "GOOGLE_STITCH_API_KEY"
+      ],
+      "notes": "Original config contained a real key and was sanitized to an environment variable placeholder."
+    },
+    {
+      "name": "node_repl",
+      "type": "local",
+      "command": "/Applications/Codex.app/Contents/Resources/cua_node/bin/node_repl",
+      "args": [],
+      "tools": [
+        "codex"
+      ],
+      "requiredEnv": [],
+      "notes": "Codex app bundled helper with macOS-specific absolute paths."
+    }
+  ]
+}

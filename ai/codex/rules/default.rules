@@ -1,0 +1,4 @@
+prefix_rule(pattern=["node", "/Users/franccesco.jaimes/.codex/skills/.system/openai-docs/scripts/fetch-codex-manual.mjs"], decision="allow")
+prefix_rule(pattern=["codex", "mcp", "add"], decision="allow")
+prefix_rule(pattern=["codex", "mcp", "login"], decision="allow")
+prefix_rule(pattern=["open", "https://www.figma.com/oauth/mcp?response_type=code&client_id=BDIu0do1d8yDUhumrVAPfO&state=YWnQJn1m37u1nINvfJWCOg&code_challenge=xgCL2uX5nMI0W_dpokXOcrN5KM6WEc8p1qKsKPxJba0&code_challenge_method=S256&redirect_uri=http%3A%2F%2F127.0.0.1%3A62738%2Fcallback%2FW2QUbtwYBOaR&scope=mcp%3Aconnect&resource=https%3A%2F%2Fmcp.figma.com%2Fmcp"], decision="allow")

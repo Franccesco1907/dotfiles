@@ -1,0 +1,129 @@
+model = "gpt-5.5"
+model_reasoning_effort = "xhigh"
+model_instructions_file = "/Users/franccesco.jaimes/.codex/engram-instructions.md"
+experimental_compact_prompt_file = "/Users/franccesco.jaimes/.codex/engram-compact-prompt.md"
+notify = [
+    "/Users/franccesco.jaimes/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient",
+    "turn-ended",
+]
+approval_policy = "never"
+sandbox_mode = "danger-full-access"
+
+[mcp_servers.figma]
+url = "https://mcp.figma.com/mcp"
+
+[mcp_servers.figma.tools.use_figma]
+approval_mode = "approve"
+
+[mcp_servers.engram]
+command = "/opt/homebrew/bin/engram"
+args = [
+    "mcp",
+    "--tools=agent",
+]
+
+[mcp_servers.context7]
+url = "https://mcp.context7.com/mcp"
+
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/Codex.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/franccesco.jaimes/.codex"
+CODEX_HOME = "/Users/franccesco.jaimes/.codex"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "2c20141b13bec5a64cd2874d8e2df011430d5b1a70e4f5425aa10d01743311a8"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.616.51431"
+CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
+
+[mcp_servers.stitch]
+url = "https://stitch.googleapis.com/mcp"
+
+[mcp_servers.stitch.http_headers]
+X-Goog-Api-Key = "{env:GOOGLE_STITCH_API_KEY}"
+
+[projects."/Users/franccesco.jaimes/projects/personal/faith-streaks"]
+trust_level = "trusted"
+
+[projects."/Users/franccesco.jaimes/projects/personal/tmachine-front"]
+trust_level = "trusted"
+
+[projects."/Users/franccesco.jaimes/projects"]
+trust_level = "trusted"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+
+[notice.model_migrations]
+"gpt-5.3-codex" = "gpt-5.4"
+"gpt-5.4" = "gpt-5.5"
+
+[features]
+multi_agent = true
+js_repl = false
+
+[agents]
+max_depth = 2
+max_threads = 4
+
+[hooks.state."/Users/franccesco.jaimes/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:ee482040d324265de9bff0ee883aab2dad7b181a4a7e07c0250cfebe0dc32dd6"
+
+[marketplaces.openai-bundled]
+last_updated = "2026-06-23T04:15:42Z"
+source_type = "local"
+source = "/Users/franccesco.jaimes/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+last_updated = "2026-06-23T04:54:01Z"
+source_type = "local"
+source = "/Users/franccesco.jaimes/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[marketplaces.claude-plugins-official]
+last_updated = "2026-06-23T04:15:29Z"
+last_revision = "f57f28050818b8ee4558996d16cb925e47661a5c"
+source_type = "git"
+source = "https://github.com/anthropics/claude-plugins-official.git"
+
+[marketplaces.engram]
+last_updated = "2026-06-23T04:15:40Z"
+last_revision = "44faeee1fb4fabdee4ba9619df55af485f3d06eb"
+source_type = "git"
+source = "https://github.com/Gentleman-Programming/engram.git"
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."frontend-design@claude-plugins-official"]
+enabled = true
+
+[plugins."engram@engram"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[desktop]
+conversationDetailMode = "STEPS_COMMANDS"
+ambient-suggestions-enabled = false
+show-context-window-usage = true

@@ -1,0 +1,1 @@
+/Users/franccesco.jaimes/code/opencode-power-pack/commands/code-explorer.md

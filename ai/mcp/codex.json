@@ -1,0 +1,33 @@
+{
+  "mcpServers": {
+    "figma": {
+      "type": "remote",
+      "url": "https://mcp.figma.com/mcp"
+    },
+    "engram": {
+      "type": "local",
+      "command": "/opt/homebrew/bin/engram",
+      "args": [
+        "mcp",
+        "--tools=agent"
+      ]
+    },
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "node_repl": {
+      "type": "local",
+      "command": "/Applications/Codex.app/Contents/Resources/cua_node/bin/node_repl",
+      "args": [],
+      "notes": "Codex app bundled Node REPL; machine-specific paths."
+    },
+    "stitch": {
+      "type": "remote",
+      "url": "https://stitch.googleapis.com/mcp",
+      "headers": {
+        "X-Goog-Api-Key": "{env:GOOGLE_STITCH_API_KEY}"
+      }
+    }
+  }
+}
