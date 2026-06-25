@@ -44,6 +44,10 @@ ai/
 
 `bootstrap.sh` creates symlinks from `$HOME` back into this repo.
 
+On macOS, it links the full AI tooling setup.
+
+On Linux/WSL2, it links only portable files by default: skills, agents, prompts, and general instruction files. It intentionally skips configs that were migrated from macOS and contain paths such as `/Users/...`, `/Applications/...`, or `/opt/homebrew/...`.
+
 If a destination already exists as a real file or directory, it is moved into `.backups/<timestamp>/` before the symlink is created.
 
 If a destination exists as an incorrect symlink, rerun with:
@@ -51,6 +55,26 @@ If a destination exists as an incorrect symlink, rerun with:
 ```bash
 ./bootstrap.sh --force
 ```
+
+## WSL2 notes
+
+Run the dry-run first:
+
+```bash
+./bootstrap.sh --dry-run
+```
+
+If you see `Skip on wsl2`, that is expected. The script is protecting WSL2 from applying macOS-specific configs.
+
+Do not manually symlink these files on WSL2 until platform-specific variants exist:
+
+- `ai/opencode/opencode.json`
+- `ai/opencode/tui.json`
+- `ai/opencode/commands`
+- `ai/claude/settings.json`
+- `ai/claude/mcp`
+- `ai/codex/config.toml`
+- `ai/codex/rules`
 
 ## Secrets
 
