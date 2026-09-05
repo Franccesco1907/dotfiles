@@ -1,0 +1,34 @@
+name: Feature request
+description: Propose a focused improvement to the dotfiles workflow
+title: "feat: "
+labels:
+  - "type:feature"
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or opportunity
+      description: Describe the limitation or opportunity this change addresses.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Proposed outcome
+      description: Describe the user-visible result, without prescribing unnecessary implementation details.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: List the observable conditions that make the change complete.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add relevant constraints, risks, or references.
+    validations:
+      required: false
