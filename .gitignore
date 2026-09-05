@@ -35,3 +35,6 @@
 **/models_cache.json
 **/*-state.json
 **/opencode-notifier-state.json
+
+# Local CodeGraph index
+.codegraph/
