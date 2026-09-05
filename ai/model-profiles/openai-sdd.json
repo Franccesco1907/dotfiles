@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "opencode": {
+    "default_profile": "quality",
+    "profiles": {
+      "quality": {
+        "orchestrator": ["openai/gpt-5.6-sol", "high"],
+        "phases": {
+          "sdd-init": ["openai/gpt-5.6-luna", "high"],
+          "sdd-explore": ["openai/gpt-5.6-sol", "high"],
+          "sdd-research": ["openai/gpt-5.6-sol", "xhigh"],
+          "sdd-propose": ["openai/gpt-5.6-sol", "xhigh"],
+          "sdd-spec": ["openai/gpt-5.6-terra", "high"],
+          "sdd-design": ["openai/gpt-6-astra", "xhigh"],
+          "sdd-tasks": ["openai/gpt-5.6-terra", "high"],
+          "sdd-apply": ["openai/gpt-5.6-sol", "high"],
+          "sdd-verify": ["openai/gpt-6-astra", "xhigh"],
+          "sdd-archive": ["openai/gpt-5.6-luna", "high"],
+          "sdd-onboard": ["openai/gpt-5.6-terra", "high"]
+        }
+      },
+      "quality-fast": {
+        "orchestrator": ["openai/gpt-5.6-sol-fast", "high"],
+        "phases": {
+          "sdd-init": ["openai/gpt-5.6-luna-fast", "high"],
+          "sdd-explore": ["openai/gpt-5.6-sol-fast", "high"],
+          "sdd-research": ["openai/gpt-5.6-sol-fast", "xhigh"],
+          "sdd-propose": ["openai/gpt-5.6-sol-fast", "xhigh"],
+          "sdd-spec": ["openai/gpt-5.6-terra-fast", "high"],
+          "sdd-design": ["openai/gpt-6-astra-fast", "xhigh"],
+          "sdd-tasks": ["openai/gpt-5.6-terra-fast", "high"],
+          "sdd-apply": ["openai/gpt-5.6-sol-fast", "high"],
+          "sdd-verify": ["openai/gpt-6-astra-fast", "xhigh"],
+          "sdd-archive": ["openai/gpt-5.6-luna-fast", "high"],
+          "sdd-onboard": ["openai/gpt-5.6-terra-fast", "high"]
+        }
+      }
+    },
+    "agents": {
+      "dangerous-gentleman": ["openai/gpt-5.6-sol", "high"],
+      "dangerous-gentleman-fast": ["openai/gpt-5.6-sol-fast", "high"],
+      "jd-fix-agent": ["openai/gpt-5.6-sol", "high"],
+      "jd-judge-a": ["openai/gpt-6-astra", "xhigh"],
+      "jd-judge-b": ["openai/gpt-6-astra", "xhigh"],
+      "review-risk": ["openai/gpt-6-astra", "xhigh"],
+      "review-resilience": ["openai/gpt-6-astra", "xhigh"],
+      "review-readability": ["openai/gpt-6-astra", "xhigh"],
+      "review-reliability": ["openai/gpt-6-astra", "xhigh"],
+      "review-refuter": ["openai/gpt-6-astra", "xhigh"],
+      "review-validator": ["openai/gpt-5.6-sol", "high"]
+    }
+  },
+  "codex": {
+    "profiles": {
+      "gentle-orchestrator-quality": ["gpt-5.6-sol", "medium", "default", false],
+      "gentle-orchestrator-fast": ["gpt-5.6-sol", "high", "fast", false],
+      "dangerous-gentleman": ["gpt-5.6-sol", "medium", "default", true],
+      "dangerous-gentleman-fast": ["gpt-5.6-sol", "high", "fast", true],
+      "sdd-strong": ["gpt-5.6-sol", "xhigh", "default", false],
+      "sdd-mid": ["gpt-5.6-sol", "high", "default", false],
+      "sdd-cheap": ["gpt-5.6-luna", "high", "default", false],
+      "sdd-strong-fast": ["gpt-5.6-sol", "xhigh", "fast", false],
+      "sdd-mid-fast": ["gpt-5.6-sol", "high", "fast", false],
+      "sdd-cheap-fast": ["gpt-5.6-luna", "high", "fast", false]
+    }
+  }
+}

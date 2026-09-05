@@ -13,6 +13,17 @@ This repo intentionally starts with AI tooling only. Shell, Git, Neovim, tmux, H
 
 Restart OpenCode, Claude, or Codex after changing config, skills, agents, or MCP files.
 
+### Portable SDD model profiles
+
+After Gentle AI is installed and OpenAI authentication is complete on the target machine:
+
+~~~bash
+./ai/model-profiles/apply.sh --dry-run
+./ai/model-profiles/apply.sh
+~~~
+
+This applies only model-routing policy. It does not copy authentication, MCP secrets, runtime state, or machine-specific paths. See [Portable SDD model profiles](ai/model-profiles/README.md) for profile names, prerequisites, and rollback.
+
 ## Layout
 
 ```txt
@@ -38,6 +49,10 @@ ai/
     opencode.json
     claude.json
     codex.json
+  model-profiles/
+    openai-sdd.json
+    apply.py
+    apply.sh
 ```
 
 ## Bootstrap behavior
@@ -66,7 +81,7 @@ Run the dry-run first:
 
 If you see `Skip on wsl2`, that is expected. The script is protecting WSL2 from applying macOS-specific configs.
 
-Do not manually symlink these files on WSL2 until platform-specific variants exist:
+Do not manually symlink these complete files on WSL2. Use the portable model-profile applicator for SDD model routing, and keep the remaining machine-specific configuration local:
 
 - `ai/opencode/opencode.json`
 - `ai/opencode/tui.json`
