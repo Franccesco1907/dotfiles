@@ -1,118 +1,29 @@
 # AI Dotfiles
 
-Source of truth for AI development tooling: skills, agents, OpenCode, Claude, Codex, and MCP configuration.
+Source of truth for OpenCode, Claude, Codex, skills, agents and MCP configuration. Shell/editor configuration and full machine bootstrap remain out of scope.
 
-This repo intentionally starts with AI tooling only. Shell, Git, Neovim, tmux, Homebrew, and full machine bootstrap can be added later.
+## Install
 
-## Quick start
-
-```bash
+```sh
 ./bootstrap.sh --dry-run
 ./bootstrap.sh
 ```
 
-Restart OpenCode, Claude, or Codex after changing config, skills, agents, or MCP files.
+Restart the affected tool after configuration changes. Bootstrap links files from this checkout into your home directory; keep the checkout in place. Existing real files/directories move to `.backups/<timestamp>/`. Correct links remain untouched; an incorrect link requires `--force`.
 
-### Portable SDD model profiles
+macOS receives the full configuration. Linux/WSL2 receives portable skills, agents, prompts and instructions; the script lists skipped macOS-specific configuration. Do not manually link the skipped files: they contain machine-specific paths or settings.
 
-After Gentle AI is installed and OpenAI authentication is complete on the target machine:
+## Maintain
 
-~~~bash
-./ai/model-profiles/apply.sh --dry-run
-./ai/model-profiles/apply.sh
-~~~
+- `ai/shared`: shared skills, agents and prompts.
+- `ai/opencode`, `ai/claude`, `ai/codex`: runtime-specific files; their skill/delegation contracts deliberately differ.
+- [MCP configuration](ai/mcp/README.md): neutral registry plus per-tool schema mirrors, maintained separately.
+- [Portable model profiles](ai/model-profiles/README.md): apply model routing after Gentle AI installation and OpenAI authentication; includes dry-run and rollback.
 
-This applies only model-routing policy. It does not copy authentication, MCP secrets, runtime state, or machine-specific paths. See [Portable SDD model profiles](ai/model-profiles/README.md) for profile names, prerequisites, and rollback.
+Run `python3 -m unittest discover -s tests` for model-profile checks. Inspect bootstrap with `bash -n bootstrap.sh` and `./bootstrap.sh --dry-run`; dry-run does not install links. JSON checks require python3. Bootstrap does not validate TOML.
 
-## Layout
+## Secrets and local state
 
-```txt
-ai/
-  shared/
-    skills/
-    agents/
-    prompts/
-  opencode/
-    opencode.json
-    agents/
-    skills/
-  claude/
-    settings.json
-    agents/
-    skills/
-  codex/
-    config.toml
-    agents/
-    skills/
-  mcp/
-    registry.json
-    opencode.json
-    claude.json
-    codex.json
-  model-profiles/
-    openai-sdd.json
-    apply.py
-    apply.sh
-```
+Never commit tokens, keys, bearer values or authentication. Keep values in a secret manager or local environment; tracked configuration contains placeholders/environment references only. Set `GOOGLE_STITCH_API_KEY` outside this repository for Stitch.
 
-## Bootstrap behavior
-
-`bootstrap.sh` creates symlinks from `$HOME` back into this repo.
-
-On macOS, it links the full AI tooling setup.
-
-On Linux/WSL2, it links only portable files by default: skills, agents, prompts, and general instruction files. It intentionally skips configs that were migrated from macOS and contain paths such as `/Users/...`, `/Applications/...`, or `/opt/homebrew/...`.
-
-If a destination already exists as a real file or directory, it is moved into `.backups/<timestamp>/` before the symlink is created.
-
-If a destination exists as an incorrect symlink, rerun with:
-
-```bash
-./bootstrap.sh --force
-```
-
-## WSL2 notes
-
-Run the dry-run first:
-
-```bash
-./bootstrap.sh --dry-run
-```
-
-If you see `Skip on wsl2`, that is expected. The script is protecting WSL2 from applying macOS-specific configs.
-
-Do not manually symlink these complete files on WSL2. Use the portable model-profile applicator for SDD model routing, and keep the remaining machine-specific configuration local:
-
-- `ai/opencode/opencode.json`
-- `ai/opencode/tui.json`
-- `ai/opencode/commands`
-- `ai/claude/settings.json`
-- `ai/claude/mcp`
-- `ai/codex/config.toml`
-- `ai/codex/rules`
-
-## Secrets
-
-Do not commit tokens, API keys, or bearer values.
-
-Use environment variable references in config files and keep actual values in 1Password, Keychain, `.env.local`, `.zshrc.local`, or exported shell variables.
-
-## What is intentionally excluded
-
-Runtime state, caches, histories, sessions, auth files, SQLite databases, and backups are not part of this repo.
-
-Examples:
-
-- Claude `projects/`, `sessions/`, `paste-cache/`, `file-history/`, `backups/`
-- Codex `auth.json`, `history.jsonl`, SQLite files, sessions, cache, app binaries
-- OpenCode `node_modules/`, logs, profile history, local account files
-
-## MCPs
-
-`ai/mcp/registry.json` is the neutral inventory. Tool-specific MCP mirrors live next to it:
-
-- `ai/mcp/opencode.json`
-- `ai/mcp/claude.json`
-- `ai/mcp/codex.json`
-
-The Stitch API key was intentionally replaced with an environment variable placeholder. Set `GOOGLE_STITCH_API_KEY` outside the repo before using that MCP.
+Runtime state, caches, histories, sessions, SQLite databases, backups and machine-specific credentials stay untracked. Model-profile application copies no authentication, secrets or runtime state.
